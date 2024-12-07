@@ -21,7 +21,7 @@ resource "aws_instance" "ec2" {
 // NOTE: Instance Role
 
 resource "aws_iam_instance_profile" "profile" {
-  count = var.role_name ? 1 : 0
+  count = var.role_name == null ?  0 : 1
 
   name = "${var.name_prefix}_profile"
   role = var.role_name
