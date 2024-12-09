@@ -59,6 +59,12 @@ variable "key_name" {
   default     = null
 }
 
+variable "root_volume_size" {
+  description = "root volume의 크기"
+  type        = number
+  default     = null
+}
+
 variable "user_data" {
   description = "EC2에서 최초 생성 시 실행될 스크립트"
   type        = string

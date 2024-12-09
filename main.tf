@@ -9,6 +9,10 @@ resource "aws_instance" "ec2" {
 
   key_name = var.key_name
 
+  root_block_device {
+    volume_type = "gp3"
+    volume_size = var.root_volume_size
+  }
 
   iam_instance_profile = var.role_name == null ? null : aws_iam_instance_profile.profile[0].name
   user_data            = var.user_data
@@ -21,7 +25,7 @@ resource "aws_instance" "ec2" {
 // NOTE: Instance Role
 
 resource "aws_iam_instance_profile" "profile" {
-  count = var.role_name == null ?  0 : 1
+  count = var.role_name == null ? 0 : 1
 
   name = "${var.name_prefix}_profile"
   role = var.role_name
